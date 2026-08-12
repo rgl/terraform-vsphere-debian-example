@@ -5,11 +5,11 @@ Install the [Debian 13 VM template](https://github.com/rgl/debian-vagrant).
 Install Terraform and govc (Debian):
 
 ```bash
-wget https://releases.hashicorp.com/terraform/1.15.4/terraform_1.15.4_linux_amd64.zip
-unzip terraform_1.15.4_linux_amd64.zip
+wget https://releases.hashicorp.com/terraform/1.15.8/terraform_1.15.8_linux_amd64.zip
+unzip terraform_1.15.8_linux_amd64.zip
 sudo install terraform /usr/local/bin
 rm terraform terraform_*_linux_amd64.zip
-wget https://github.com/vmware/govmomi/releases/download/v0.54.0/govc_Linux_x86_64.tar.gz
+wget https://github.com/vmware/govmomi/releases/download/v0.55.1/govc_Linux_x86_64.tar.gz
 tar xf govc_Linux_x86_64.tar.gz govc
 sudo install govc /usr/local/bin/govc
 rm govc govc_Linux_x86_64.tar.gz
@@ -32,7 +32,7 @@ export TF_VAR_vsphere_compute_cluster='Cluster'
 export TF_VAR_vsphere_datastore='Datastore'
 export TF_VAR_vsphere_network='VM Network'
 export TF_VAR_vsphere_folder='example'
-export TF_VAR_vsphere_debian_template='vagrant-templates/debian-13-amd64'
+export TF_VAR_vsphere_debian_template='vagrant-templates/debian-13-uefi-amd64'
 export GOVC_INSECURE='1'
 export GOVC_URL="https://$TF_VAR_vsphere_server/sdk"
 export GOVC_USERNAME="$TF_VAR_vsphere_user"
@@ -59,4 +59,10 @@ ssh "vagrant@$(terraform output --json ips | jq -r '.[0]')"
 sudo cloud-init schema --system --annotate
 exit
 time terraform destroy --auto-approve
+```
+
+List this repository dependencies (and which have newer versions):
+
+```bash
+GITHUB_COM_TOKEN='YOUR_GITHUB_PERSONAL_TOKEN' ./renovate.sh
 ```

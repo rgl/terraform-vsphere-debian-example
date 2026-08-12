@@ -1,6 +1,6 @@
 # see https://github.com/hashicorp/terraform
 terraform {
-  required_version = "1.15.4"
+  required_version = "1.15.8"
   required_providers {
     # see https://registry.terraform.io/providers/hashicorp/random
     # see https://github.com/hashicorp/terraform-provider-random
@@ -18,7 +18,7 @@ terraform {
     # see https://github.com/vmware/terraform-provider-vsphere
     vsphere = {
       source  = "vmware/vsphere"
-      version = "2.16.0"
+      version = "2.16.1"
     }
   }
 }
@@ -101,7 +101,7 @@ variable "vsphere_folder" {
 }
 
 variable "vsphere_debian_template" {
-  default = "vagrant-templates/debian-13-amd64-vsphere"
+  default = "vagrant-templates/debian-13-uefi-amd64-vsphere"
 }
 
 variable "prefix" {
